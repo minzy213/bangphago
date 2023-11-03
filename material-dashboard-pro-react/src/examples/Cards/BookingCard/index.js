@@ -64,12 +64,10 @@ function BookingCard({ image, title, time, difficulty, grade, location, store_id
 				/>
 			</MDBox>
 			<MDBox pt={3} px={3} sx={{ width: "70%", position: "absolute", left: "26%" }}>
-				<MDTypography variant="h5" fontWeight="regular" sx={{ mt: 2 }}>
-					<strong>
-						<a
-							href={store_id}
+				<a href={store_id}>
+					<MDTypography variant="h5" fontWeight="regular" sx={{ mt: 2 }}>
+						<strong
 							style={{
-								color: "black",
 								fontSize: "180%",
 								display: "block",
 								overflow: "hidden",
@@ -78,9 +76,9 @@ function BookingCard({ image, title, time, difficulty, grade, location, store_id
 							}}
 						>
 							{title}
-						</a>
-					</strong>
-				</MDTypography>
+						</strong>
+					</MDTypography>
+				</a>
 				<MDTypography variant="body2" color="text" sx={{ mt: 1.5, mb: 1 }}>
 					난이도: {difficulty.toString()} / 시간: {time.toString()}분 / 평점: {grade}/5
 				</MDTypography>

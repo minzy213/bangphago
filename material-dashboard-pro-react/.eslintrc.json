@@ -37,6 +37,5 @@
 
 	"parser": "@typescript-eslint/parser",
 
-	"plugins": ["react", "@typescript-eslint", "prettier"],
-	"no-mixed-spaces-and-tabs": ["error", "smart-tabs"]
+	"plugins": ["react", "@typescript-eslint", "prettier"]
 }

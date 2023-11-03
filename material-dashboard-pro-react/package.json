@@ -24,6 +24,7 @@
     "@fullcalendar/timegrid": "6.1.6",
     "@mui/icons-material": "5.11.16",
     "@mui/material": "5.12.3",
+    "@mui/x-data-grid": "^6.17.0",
     "@react-jvectormap/core": "1.0.4",
     "@react-jvectormap/world": "1.1.2",
     "chart.js": "4.3.0",

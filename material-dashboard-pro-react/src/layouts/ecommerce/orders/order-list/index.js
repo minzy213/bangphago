@@ -25,12 +25,8 @@ import Divider from "@mui/material/Divider";
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
 
 // Material Dashboard 2 PRO React examples
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
@@ -64,33 +60,11 @@ function OrderList() {
 	);
 
 	return (
-		<DashboardLayout>
-			<DashboardNavbar />
+		<MDBox pt={3} pb={2} px={2}>
 			<MDBox my={3}>
-				<MDBox display="flex" justifyContent="space-between" alignItems="flex-start" mb={2}>
-					<MDButton variant="gradient" color="info">
-						new order
-					</MDButton>
-					<MDBox display="flex">
-						<MDButton variant={menu ? "contained" : "outlined"} color="dark" onClick={openMenu}>
-							filters&nbsp;
-							<Icon>keyboard_arrow_down</Icon>
-						</MDButton>
-						{renderMenu}
-						<MDBox ml={1}>
-							<MDButton variant="outlined" color="dark">
-								<Icon>description</Icon>
-								&nbsp;export csv
-							</MDButton>
-						</MDBox>
-					</MDBox>
-				</MDBox>
-				<Card>
-					<DataTable table={dataTableData} entriesPerPage={false} canSearch />
-				</Card>
+				<DataTable table={dataTableData} entriesPerPage={false} canSearch />
 			</MDBox>
-			<Footer />
-		</DashboardLayout>
+		</MDBox>
 	);
 }
 

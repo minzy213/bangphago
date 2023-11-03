@@ -55,6 +55,8 @@ import brandDark from "assets/images/logo.png";
 import React from "react";
 
 import SearchPage from "layouts/dashboards/search/index";
+import Sales from "layouts/dashboards/sales";
+import Billing from "layouts/pages/account/billing";
 
 export default function App() {
 	const [controller, dispatch] = useMaterialUIController();
@@ -188,7 +190,7 @@ export default function App() {
 				{getRoutes(routes)}
 
 				<Route path="/" element={<SearchPage />} />
-				<Route path="/dashboards/:roomId" element={<Navigate to="/dashboards/sales" />} />
+				<Route path="/dashboards/:roomId" element={<Billing />} />
 			</Routes>
 		</ThemeProvider>
 	);

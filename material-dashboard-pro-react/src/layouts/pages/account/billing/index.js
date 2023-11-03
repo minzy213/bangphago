@@ -33,39 +33,20 @@ import Transactions from "layouts/pages/account/billing/components/Transactions"
 function Billing() {
 	return (
 		<BaseLayout stickyNavbar>
-			<MDBox mt={4}>
-				<MDBox mb={3}>
-					<Grid container spacing={3}>
-						<Grid item xs={12} lg={8}>
-							<Grid container spacing={3}>
-								<Grid item xs={12} xl={6}>
-									<MasterCard number={4562112245947852} holder="jack peterson" expires="11/22" />
-								</Grid>
-								<Grid item xs={12} md={6} xl={3}>
-									<DefaultInfoCard
-										icon="account_balance"
-										title="salary"
-										description="Belong Interactive"
-										value="+$2000"
-									/>
-								</Grid>
-								<Grid item xs={12} md={6} xl={3}>
-									<DefaultInfoCard icon="paypal" title="paypal" description="Freelance Payment" value="$455.00" />
-								</Grid>
-								<Grid item xs={12}>
-									<PaymentMethod />
-								</Grid>
-							</Grid>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<Invoices />
-						</Grid>
-					</Grid>
-				</MDBox>
-				<MDBox mb={3}>
+			<MDBox mt={7}>
+				<MDBox mb={0}>
 					<Grid container spacing={3}>
 						<Grid item xs={12} md={7}>
-							<BillingInformation />
+							<BillingInformation
+								themeName="원한 대충 겁나게 길어버려서 넘아가는 그런 이름이다."
+								themeImg="https://roomescape-backend-image.s3.ap-northeast-2.amazonaws.com/theme/d1a62adc-01ed-4a02-a1d9-7db7f820ff92.jpg"
+								telNum="010-6551-6561"
+								Intro="유람선을 타고 친구들과 함께 여행을 즐기던 중 갑자기 찾아온 거센 폭풍우… 삽시간에 유람선을 덥치게 되고 운이 좋게 살아남은 당신은 작은 밀림에 눈을 뜨게 된다. 사람? 아니 원숭이? 정체불명의 생명체는 당신의 친구를 허름한 건물 안으로 끌고 가버린다 . 친구를 구하기 위해 무작정 건물 안으로 들어간 당신. 그런데 무언가 이상하다.... 갇혀있는 친구, 눈앞에 보이는 이상한 기계들. 과연 이곳은 어디일까? 당신은 무사히 이곳을 탈출할 수 있을까?...."
+								time="60"
+								Grade="3.0"
+								Location="서울특별시 노원구 어딘가 어느빌딩 1층 가장 안쪽..."
+								Category="카테고리"
+							/>
 						</Grid>
 						<Grid item xs={12} md={5}>
 							<Transactions />
