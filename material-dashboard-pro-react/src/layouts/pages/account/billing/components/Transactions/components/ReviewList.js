@@ -67,8 +67,9 @@ function TablePaginationActions(props) {
 	);
 }
 
-function createData(name, grade, content, full_content) {
+function createData(comment_id, name, grade, content, full_content) {
 	return {
+		comment_id,
 		name,
 		grade,
 		content,
@@ -76,17 +77,10 @@ function createData(name, grade, content, full_content) {
 	};
 }
 
-function Row({ row }) {
-	const [open, setOpen] = React.useState(false);
-
+function Row({ row, onClick, isExpanded = false }) {
 	return (
 		<React.Fragment>
-			<TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-				<TableCell>
-					<IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-					</IconButton>
-				</TableCell>
+			<TableRow sx={{ "& > *": { borderBottom: "unset" } }} onClick={onClick}>
 				<TableCell component="th" scope="row">
 					{row.name}
 				</TableCell>
@@ -96,7 +90,7 @@ function Row({ row }) {
 			</TableRow>
 			<TableRow>
 				<TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-					<Collapse in={open} timeout="auto" unmountOnExit>
+					<Collapse in={isExpanded} timeout="auto" unmountOnExit>
 						<Box sx={{ margin: 1 }}>
 							<Typography variant="h6" gutterBottom component="div">
 								원본 댓글
@@ -111,16 +105,22 @@ function Row({ row }) {
 }
 
 const rows = [
-	createData("Frozen", 6.0, "testing", "전체 댓글1"),
-	createData("Icecream", 9.0, "testing", "전체 댓글2"),
-	createData("Eclair", 6.0, "testing", "전체 댓글3"),
-	createData("Cupcake", 3.7, "testing", "전체 댓글4"),
-	createData("Gingerbread", 16.0, "testing", "전체 댓글5"),
+	createData("1", "Frozen", 6.0, "testing", "전체 댓글1"),
+	createData("2", "Icecream", 9.0, "testing", "전체 댓글2"),
+	createData("3", "Eclair", 6.0, "testing", "전체 댓글3"),
+	createData("4", "Cupcake", 3.7, "testing", "전체 댓글4"),
+	createData("5", "Gingerbread", 16.0, "testing", "전체 댓글5"),
+	createData("6", "gfgfgfgss", 16.0, "testing", "전체 댓글5"),
+	createData("7", "gfgfgfgsserwew", 16.0, "testing", "전체 댓글5"),
+	createData("8", "gfsgsfgfgsserwew", 16.0, "testing", "전체 댓글5"),
+	createData("9", "agfgfgfgsserwew", 16.0, "testing", "전체 댓글5"),
+	createData("10", "gfgfgfsgsserwew", 16.0, "testing", "전체 댓글5"),
 ];
 
 export default function Transactions() {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
+	const [index, setIndex] = React.useState(0);
 	const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
 	const handleChangePage = (event, newPage) => {
@@ -132,21 +132,56 @@ export default function Transactions() {
 		setPage(0);
 	};
 
+	// const onClickReview = React.useCallback(()=>{
+
+	// })
+
+	const onClickRow = React.useCallback(
+		comment_id => {
+			setIndex(comment_id);
+		},
+		[setIndex],
+	);
+
 	return (
 		<MDBox>
 			<TableContainer component={Paper} pt={3} pb={2} px={2}>
 				<Table aria-label="collapsible table">
 					<TableHead>
 						<TableRow>
-							<TableCell />
-							<TableCell align="right">닉네임</TableCell>
-							<TableCell align="right">평점</TableCell>
-							<TableCell align="right">내용</TableCell>
+							<TableCell>닉네임</TableCell>
+							<TableCell>평점</TableCell>
+							<TableCell>내용</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{rows.map(row => (
-							<Row key={row.name} row={row} />
+							<Row
+								key={row.comment_id}
+								row={row}
+								isExpanded={row.comment_id === index ? true : false}
+								onClick={e => {
+									e.preventDefault();
+									onClickRow(row.comment_id);
+								}}
+							/>
+							// <TableRow
+							// 	id={row.comment_id}
+							// 	key={row.comment_id}
+							// 	onClick={e => {
+							// 		// setIndex(1);
+							// 		// console.log(e);
+							// 		// console.log(e.target);
+							// 		setIndex(e.currentTarget.id);
+							// 		// console.log(e.currentTarget.id);
+							// 	}}
+							// >
+							// 	{/* <MuiTableRowRoot> */}
+							// 	<TableCell>{row.name}</TableCell>
+							// 	<TableCell>{row.grade}</TableCell>
+							// 	<TableCell>{row.content}</TableCell>
+							// 	{/* </MuiTableRowRoot> */}
+							// </TableRow>
 						))}
 					</TableBody>
 					<TableFooter>

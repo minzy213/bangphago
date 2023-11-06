@@ -24,12 +24,9 @@ import MDTypography from "components/MDTypography";
 import ReviewList from "./components/ReviewList";
 // import MDButton from "components/MDButton";
 
-// Billing page components
-import Transaction from "layouts/pages/account/billing/components/Transaction";
-
 function Transactions() {
 	return (
-		<Card sx={{ height: "100%" }}>
+		<Card sx={{ height: "100%", position: "fixed" }}>
 			<MDBox display="flex" justifyContent="space-between" alignItems="center" pt={3} px={2}>
 				<MDTypography variant="h6" fontWeight="medium" textTransform="capitalize">
 					댓글
