@@ -47,27 +47,27 @@ const routes = [
 	{
 		type: "collapse",
 		name: "댓글기반 추천",
-		key: "dashboards",
+		key: "Recommand",
 		icon: <Icon fontSize="medium">smsOutlined</Icon>,
 		noCollapse: true,
-		route: "/dashboards/analytics",
+		route: "/Recommand",
 		component: <Analytics />,
 	},
 	{ type: "title", title: "선택기준 : 수정 하려면 routes.js!", key: "title-pages" },
 	{
 		type: "collapse",
 		name: "추천순",
-		key: "1",
-		route: "/dashboards/Sales",
+		key: "Recommand_",
+		route: "/Recommand",
 		icon: <Icon fontSize="medium">recommendoutlined</Icon>,
 		noCollapse: true,
-		component: <Sales />,
+		component: <Analytics />,
 	},
 	{
 		type: "collapse",
 		name: "인기순",
-		key: "2",
-		route: "/dashboards/analytics",
+		key: "popular",
+		route: "/popular",
 		icon: <Icon fontSize="medium">groupsoutlined</Icon>,
 		noCollapse: true,
 		component: <Analytics />,
@@ -75,8 +75,8 @@ const routes = [
 	{
 		type: "collapse",
 		name: "색다름",
-		key: "3",
-		route: "/dashboards/analytics",
+		key: "different",
+		route: "/different",
 		icon: <Icon fontSize="medium">announcementoutlined</Icon>,
 		noCollapse: true,
 		component: <Analytics />,
@@ -84,3 +84,12 @@ const routes = [
 ];
 
 export default routes;
+// {
+// 	type: "collapse",
+// 	name: "인기순",
+// 	key: "2",
+// 	route: "/dashboards/analytics",
+// 	icon: <Icon fontSize="medium">groupsoutlined</Icon>,
+// 	noCollapse: true,
+// 	component: <Sales />,
+// },

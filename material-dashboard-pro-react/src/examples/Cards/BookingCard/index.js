@@ -64,7 +64,7 @@ function BookingCard({ image, title, time, difficulty, grade, location, store_id
 				/>
 			</MDBox>
 			<MDBox pt={3} px={3} sx={{ width: "70%", position: "absolute", left: "26%" }}>
-				<a href={store_id}>
+				<a href={"Recommand/" + store_id}>
 					<MDTypography variant="h5" fontWeight="regular" sx={{ mt: 2 }}>
 						<strong
 							style={{

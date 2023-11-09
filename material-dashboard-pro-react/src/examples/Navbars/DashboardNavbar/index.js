@@ -49,7 +49,7 @@ import {
 
 // Material Dashboard 2 PRO React context
 import { useMaterialUIController, setTransparentNavbar, setMiniSidenav, setOpenConfigurator } from "context";
-import { height } from "@mui/system";
+// import { height } from "@mui/system";
 
 function DashboardNavbar({ absolute, light, isMini }) {
 	const [navbarType, setNavbarType] = useState();

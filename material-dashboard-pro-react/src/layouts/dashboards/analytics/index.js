@@ -115,7 +115,7 @@ function Analytics() {
 										difficulty={store.level}
 										grade={store.grade}
 										location={store.companyName}
-										store_id={store.companyId}
+										store_id={store.companyId + "/" + store.id}
 									/>
 								</MDBox>
 							</Grid>
