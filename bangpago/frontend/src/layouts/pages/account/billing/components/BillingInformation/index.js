@@ -25,6 +25,7 @@ import Typography from "@mui/material/Typography";
 import Bill from "layouts/pages/account/billing/components/Bill";
 
 function BillingInformation({ themeName, themeImg, telNum, Intro, time, Grade, Location, Category }) {
+	const category = Category.padEnd(15, "\u00A0");
 	return (
 		<Card id="delete-account">
 			<MDBox pt={1} pb={2} px={2}>
@@ -68,9 +69,11 @@ function BillingInformation({ themeName, themeImg, telNum, Intro, time, Grade, L
 										overflow: "hidden",
 									}}
 								>
-									전화번호: {telNum} &emsp;&emsp; 평점: {Grade}
+									전화번호: {telNum}
 									<br />
-									카테고리: {Category} &emsp;&emsp; 소요시간: {time}
+									카테고리: {category}
+									<br />
+									소요시간: {time} &emsp;/&emsp; 평점: {Grade}
 									<br />
 									상세주소: {Location}
 									<br />

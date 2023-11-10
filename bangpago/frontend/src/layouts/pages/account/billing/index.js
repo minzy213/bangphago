@@ -36,7 +36,7 @@ function Billing() {
 			<MDBox mt={7}>
 				<MDBox mb={0}>
 					<Grid container spacing={3}>
-						<Grid item xs={12} md={8}>
+						<Grid item xs={12} md={8} ml={-2}>
 							<BillingInformation
 								themeName="원한: 원숭이의 한"
 								themeImg="https://roomescape-backend-image.s3.ap-northeast-2.amazonaws.com/theme/d1a62adc-01ed-4a02-a1d9-7db7f820ff92.jpg"
@@ -48,7 +48,7 @@ function Billing() {
 								Category="카테고리"
 							/>
 						</Grid>
-						<Grid item xs={12} md={4}>
+						<Grid item xs={12} md={4} ml={-1}>
 							<Transactions />
 						</Grid>
 					</Grid>

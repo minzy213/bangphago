@@ -185,7 +185,7 @@ export default function Transactions() {
 	}, [startIdx, rowsPerPage]);
 
 	return (
-		<MDBox>
+		<MDBox sx={{}}>
 			<TableContainer component={Paper} pt={3} pb={2} px={2}>
 				<Table aria-label="collapsible table">
 					<TableHead style={{ display: "table-row-group" }}>

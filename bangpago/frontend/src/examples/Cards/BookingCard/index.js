@@ -26,8 +26,15 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
 function BookingCard({ image, title, time, difficulty, grade, location, store_id }) {
+	const Difficulty = () => {
+		const arr = [];
+		for (let i = 0; i < difficulty; i++) {
+			arr.push(<Icon fontSize="midium">lock</Icon>);
+		}
+		return arr;
+	};
 	return (
-		<Card display="flex" className="card" sx={{ width: "130%", position: "relative" }}>
+		<Card display="flex" className="card" sx={{ width: "129%", position: "relative" }}>
 			<MDBox
 				position="relative"
 				borderRadius="lg"
@@ -80,7 +87,11 @@ function BookingCard({ image, title, time, difficulty, grade, location, store_id
 					</MDTypography>
 				</a>
 				<MDTypography variant="body2" color="text" sx={{ mt: 1.5, mb: 1 }}>
-					난이도: {difficulty.toString()} / 시간: {time.toString()}분 / 평점: {grade}/5
+					<Icon fontSize="small">timer</Icon>: {time.toString() + "분"}&emsp;
+					<Icon fontSize="small">grade</Icon>: {grade + "점"}
+					<br />
+					<br />
+					<div style={{ float: "right", marginTop: "-9%" }}>{Difficulty()}</div>
 				</MDTypography>
 			</MDBox>
 			<Divider />

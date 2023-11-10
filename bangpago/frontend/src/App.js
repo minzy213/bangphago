@@ -55,7 +55,6 @@ import brandDark from "assets/images/logo.png";
 import React from "react";
 
 import SearchPage from "layouts/dashboards/search/index";
-import Sales from "layouts/dashboards/sales";
 import Billing from "layouts/pages/account/billing";
 
 export default function App() {
