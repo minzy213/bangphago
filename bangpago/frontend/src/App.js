@@ -189,7 +189,7 @@ export default function App() {
 				{getRoutes(routes)}
 
 				<Route path="/" element={<SearchPage />} />
-				<Route path="/Recommand/:companyId/:themeId" element={<Billing />} />
+				<Route path="/detail/:companyId/:themeId" element={<Billing />} />
 			</Routes>
 		</ThemeProvider>
 	);

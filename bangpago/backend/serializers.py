@@ -1,5 +1,6 @@
 # from django.contrib.auth.models import User
-from .models import Users
+from .models import Users, Theme
+
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -7,5 +8,8 @@ class UserSerializer(serializers.ModelSerializer):
         model = Users
         fields = ['id', 'name', 'level']
         
-class RoomSerializer(serializers.ModelSerializer):
-    pass
+class ThemeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Theme
+        fields = ["id", "title", "company", "intro", "category", "level", "recommendPerson", "tool", "activity", "time", 'grade', "thumbnail", "createdAt"]
+    
