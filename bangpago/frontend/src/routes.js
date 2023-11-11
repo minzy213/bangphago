@@ -41,23 +41,23 @@ import Sales from "layouts/dashboards/sales";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
-import React from "react";
+import React, { useState } from "react";
 
 const routes = [
 	{
 		type: "collapse",
-		name: "댓글기반 추천",
-		key: "Recommand",
+		name: "모든 테마",
+		key: "All",
 		icon: <Icon fontSize="medium">smsOutlined</Icon>,
 		noCollapse: true,
-		route: "/Recommand",
+		route: "/All",
 		component: <Analytics />,
 	},
 	{ type: "title", title: "선택기준 : 수정 하려면 routes.js!", key: "title-pages" },
 	{
 		type: "collapse",
-		name: "추천순",
-		key: "Recommand_",
+		name: "댓글기반 추천",
+		key: "Recommand",
 		route: "/Recommand",
 		icon: <Icon fontSize="medium">recommendoutlined</Icon>,
 		noCollapse: true,

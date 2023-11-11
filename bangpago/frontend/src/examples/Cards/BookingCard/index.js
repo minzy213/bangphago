@@ -24,6 +24,8 @@ import Icon from "@mui/material/Icon";
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import axios from "axios";
+import Noimg from "./no_img.png";
 
 function BookingCard({ image, title, time, difficulty, grade, location, store_id }) {
 	const Difficulty = () => {
@@ -33,6 +35,19 @@ function BookingCard({ image, title, time, difficulty, grade, location, store_id
 		}
 		return arr;
 	};
+
+	// function is_valid_img() {
+	// 	try {
+	// 		axios.get(image);
+	// 		return false;
+	// 	} catch (e) {
+	// 		return false;
+	// 	}
+	// }
+
+	// if (is_valid_img()) {
+	// 	image = Noimg;
+	// }
 	return (
 		<Card display="flex" className="card" sx={{ width: "129%", position: "relative" }}>
 			<MDBox
@@ -49,8 +64,8 @@ function BookingCard({ image, title, time, difficulty, grade, location, store_id
 					alt={title}
 					borderRadius="lg"
 					shadow="md"
-					width="60%"
-					height="70%"
+					width="117px"
+					height="160px"
 					position="relative"
 					zIndex={1}
 				/>
@@ -71,7 +86,7 @@ function BookingCard({ image, title, time, difficulty, grade, location, store_id
 				/>
 			</MDBox>
 			<MDBox pt={3} px={3} sx={{ width: "70%", position: "absolute", left: "26%" }}>
-				<a href={"Recommand/" + store_id}>
+				<a href={"detail/" + store_id}>
 					<MDTypography variant="h5" fontWeight="regular" sx={{ mt: 2 }}>
 						<strong
 							style={{
@@ -115,8 +130,8 @@ BookingCard.propTypes = {
 	title: PropTypes.string.isRequired,
 	difficulty: PropTypes.number.isRequired,
 	grade: PropTypes.number.isRequired,
-	store_id: PropTypes.number.isRequired,
-	location: PropTypes.node.isRequired,
+	store_id: PropTypes.string.isRequired,
+	location: PropTypes.string.isRequired,
 };
 
 export default BookingCard;
