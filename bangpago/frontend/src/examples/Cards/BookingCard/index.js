@@ -27,6 +27,7 @@ import MDTypography from "components/MDTypography";
 import axios from "axios";
 import Noimg from "./no_img.png";
 
+
 function BookingCard({ image, title, time, difficulty, grade, location, store_id }) {
 	const Difficulty = () => {
 		const arr = [];
@@ -48,6 +49,7 @@ function BookingCard({ image, title, time, difficulty, grade, location, store_id
 	// if (is_valid_img()) {
 	// 	image = Noimg;
 	// }
+
 	return (
 		<Card display="flex" className="card" sx={{ width: "129%", position: "relative" }}>
 			<MDBox
@@ -132,6 +134,7 @@ BookingCard.propTypes = {
 	grade: PropTypes.number.isRequired,
 	store_id: PropTypes.string.isRequired,
 	location: PropTypes.string.isRequired,
+
 };
 
 export default BookingCard;

@@ -1,7 +1,7 @@
 
 material-dashboard-pro-react/.vscode
-material-dashboard-pro-react/node_modules/.cache
 bangpago/backend/__pycache__
 bangpago/backend/migrations/__pycache__
 bangpago/bangpago/__pycache__
-material-dashboard-pro-react
+.DS_Store
+package-lock.json

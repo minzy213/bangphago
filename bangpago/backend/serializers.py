@@ -1,5 +1,6 @@
 # from django.contrib.auth.models import User
 from .models import Users, Theme
+
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):

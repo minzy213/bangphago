@@ -57,6 +57,7 @@ function Analytics() {
 		}
 	}, [location]);
 
+
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
