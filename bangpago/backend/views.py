@@ -11,18 +11,24 @@ class UserViewSet(viewsets.ModelViewSet):
     
     
 class ThemeViewSet(viewsets.ModelViewSet):
-    queryset = Theme.objects.all()
     serializer_class = ThemeSerializer
+    queryset = Theme.objects.all()
     
-    def get_queryset(self):
-        qs = super().get_queryset()
-        
-        target = self.request.query_params.get('id')
-        if target:
-            qs = qs.filter(id=target)
-            
-        return qs
+    # def list(self, request):
+    #     # obj = self.get_object()
+    #     queryset = self.get_queryset()
+    #     sc = self.get_serializer_class()
+    #     serializer = sc(queryset, many=True)
+    #     return Response(serializer.data)
+    
+    # def retrive(self, request):
+    #     queryset = self.get_object()
+    #     sc = self.get_serializer_class()
+    #     serializer = sc(queryset)
+    #     return Response(serializer.data)
+    
     
 # class ThemeDetailViewSet(viewsets.ModelViewSet):
-#     queryset = Theme.objects.all()
+#     queryset = Theme.objects.filter(id=pk)
 #     serializer_class = ThemeSerializer
+

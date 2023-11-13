@@ -57,18 +57,17 @@ function Analytics() {
 		}
 	}, [location]);
 
-
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
 			<MDBox py={3}>
 				<MDBox mt={2}>
 					<Grid container spacing={3}>
-						{stores.map((store, idx) => (
-							<Grid item key={idx} xs={12} md={6} lg={4} sx={{ marginRight: "5%", marginLeft: "5%" }}>
+						{stores.map(store => (
+							<Grid item key={store.id} xs={12} md={6} lg={4} sx={{ marginRight: "5%", marginLeft: "5%" }}>
 								<MDBox mt={3}>
 									<BookingCard
-										image={store.thumbnail}
+										image={store.image}
 										title={store.title}
 										time={store.time}
 										difficulty={store.level}

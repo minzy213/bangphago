@@ -43,6 +43,8 @@ class Theme(models.Model):
     grade = models.FloatField()
     thumbnail = models.CharField(max_length=150)
     createdAt = models.CharField(max_length=15)
+    
+    image = models.ImageField(upload_to='theme', default='theme/no_img.png')
 
 
 class Keyword(models.Model):

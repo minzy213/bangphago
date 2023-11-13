@@ -29,8 +29,24 @@ import PaymentMethod from "layouts/pages/account/billing/components/PaymentMetho
 import Invoices from "layouts/pages/account/billing/components/Invoices";
 import BillingInformation from "layouts/pages/account/billing/components/BillingInformation";
 import Transactions from "layouts/pages/account/billing/components/Transactions";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 function Billing() {
+	const [detail, setDetail] = useState({});
+
+	function get_detail(id) {
+		axios.get("http://127.0.0.1:8000/theme/" + id).then(response => {
+			setDetail(response.data);
+		});
+	}
+
+	const location = useLocation().pathname.split("/");
+	useEffect(() => {
+		get_detail(location[3]);
+	}, []);
+
 	return (
 		<BaseLayout stickyNavbar>
 			<MDBox mt={7}>
@@ -38,14 +54,14 @@ function Billing() {
 					<Grid container spacing={3}>
 						<Grid item xs={12} md={8} ml={-2}>
 							<BillingInformation
-								themeName="원한: 원숭이의 한"
-								themeImg="https://roomescape-backend-image.s3.ap-northeast-2.amazonaws.com/theme/d1a62adc-01ed-4a02-a1d9-7db7f820ff92.jpg"
-								telNum="010-6551-6561"
-								Intro="유람선을 타고 친구들과 함께 여행을 즐기던 중 갑자기 찾아온 거센 폭풍우… 삽시간에 유람선을 덥치게 되고 운이 좋게 살아남은 당신은 작은 밀림에 눈을 뜨게 된다. 사람? 아니 원숭이? 정체불명의 생명체는 당신의 친구를 허름한 건물 안으로 끌고 가버린다 . 친구를 구하기 위해 무작정 건물 안으로 들어간 당신. 그런데 무언가 이상하다.... 갇혀있는 친구, 눈앞에 보이는 이상한 기계들. 과연 이곳은 어디일까? 당신은 무사히 이곳을 탈출할 수 있을까?...."
-								time="60"
-								Grade="3.0"
-								Location="강남 비트포비아 1호점"
-								Category="카테고리"
+								themeName={detail.title}
+								themeImg={detail.image}
+								telNum="010-6551-6561 -> 없음"
+								Intro={detail.intro}
+								time={detail.time}
+								Grade={detail.grade}
+								Location="강남 비트포비아 1호점-> 없음"
+								Category="카테고리-> 없음"
 							/>
 						</Grid>
 						<Grid item xs={12} md={4} ml={-1}>
