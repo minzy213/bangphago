@@ -99,7 +99,7 @@ for theme in tqdm(theme_dict["list"]):
     # 해당 테마의 카테고리 가져오기
     category = Category.objects.get(name=detail_d["category"])
     # 테마 정보 Theme 테이블에 저장
-    t_theme = Theme.objects.filter(title=detail_d["title"])
+    t_theme = Theme.objects.filter(id=detail_d["id"])
     if len(t_theme) == 0:
         t_theme = Theme.objects.create(
             id=detail_d["id"],
