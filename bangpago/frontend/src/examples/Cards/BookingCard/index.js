@@ -27,28 +27,18 @@ import MDTypography from "components/MDTypography";
 import axios from "axios";
 import Noimg from "./no_img.png";
 
-
 function BookingCard({ image, title, time, difficulty, grade, location, store_id }) {
 	const Difficulty = () => {
 		const arr = [];
 		for (let i = 0; i < difficulty; i++) {
-			arr.push(<Icon fontSize="midium">lock</Icon>);
+			arr.push(
+				<Icon fontSize="midium" key={i}>
+					lock
+				</Icon>,
+			);
 		}
 		return arr;
 	};
-
-	// function is_valid_img() {
-	// 	try {
-	// 		axios.get(image);
-	// 		return false;
-	// 	} catch (e) {
-	// 		return false;
-	// 	}
-	// }
-
-	// if (is_valid_img()) {
-	// 	image = Noimg;
-	// }
 
 	return (
 		<Card display="flex" className="card" sx={{ width: "129%", position: "relative" }}>
@@ -108,7 +98,7 @@ function BookingCard({ image, title, time, difficulty, grade, location, store_id
 					<Icon fontSize="small">grade</Icon>: {grade + "점"}
 					<br />
 					<br />
-					<div style={{ float: "right", marginTop: "-9%" }}>{Difficulty()}</div>
+					<span style={{ float: "right", marginTop: "-9%" }}>{Difficulty()}</span>
 				</MDTypography>
 			</MDBox>
 			<Divider />
@@ -134,7 +124,6 @@ BookingCard.propTypes = {
 	grade: PropTypes.number.isRequired,
 	store_id: PropTypes.string.isRequired,
 	location: PropTypes.string.isRequired,
-
 };
 
 export default BookingCard;
