@@ -45,7 +45,7 @@ function Billing() {
 	const location = useLocation().pathname.split("/");
 	useEffect(() => {
 		get_detail(location[3]);
-	}, [location]);
+	}, []);
 
 	return (
 		<BaseLayout stickyNavbar>
