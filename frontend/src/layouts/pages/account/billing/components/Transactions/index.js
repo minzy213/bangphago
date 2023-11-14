@@ -23,13 +23,13 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import ReviewList from "./components/ReviewList";
 // import MDButton from "components/MDButton";
-//
+//sx={{ position: "fixed", width: "27%" }}
 function Transactions() {
 	return (
-		<Card sx={{ position: "fixed" }}>
-			<MDBox display="flex" justifyContent="space-between" alignItems="center" pt={3} px={2} mb={3}>
+		<Card>
+			{/* <MDBox display="flex" justifyContent="space-between" alignItems="center" pt={3} px={2} mb={3}>
 				<MDTypography variant="h6" fontWeight="medium" textTransform="capitalize">
-					나와 성향이 비슷한 유저의 댓글
+					댓글
 				</MDTypography>
 				<MDBox display="flex" alignItems="flex-start">
 					<MDBox color="text" mr={0.5} lineHeight={0}>
@@ -38,8 +38,10 @@ function Transactions() {
 						</Icon>
 					</MDBox>
 				</MDBox>
+			</MDBox> */}
+			<MDBox mt={3}>
+				<ReviewList />
 			</MDBox>
-			<ReviewList />
 		</Card>
 	);
 }

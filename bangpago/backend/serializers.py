@@ -1,5 +1,5 @@
 # from django.contrib.auth.models import User
-from .models import Users, Theme
+from .models import Users, Theme, Review
 
 from rest_framework import serializers
 
@@ -13,3 +13,9 @@ class ThemeSerializer(serializers.ModelSerializer):
         model = Theme
         fields = ["id", "title", "company", "intro", "category", "level", "recommendPerson", "tool", "activity", "time", 'grade', "thumbnail", "createdAt", 'image']
     
+class ReviewSerializer(serializers.ModelSerializer):
+     class Meta:
+        model = Review
+        fields = ["id", "theme", "user", "playDate", "grade", "level", "success", "extraTime", "remainingTime", "userHint", "content"]
+        
+        
