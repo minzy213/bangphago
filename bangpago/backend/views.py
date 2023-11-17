@@ -24,10 +24,12 @@ class RecommandViewSet(viewsets.ModelViewSet): #추천순
 
 class PopularViewSet(viewsets.ModelViewSet): #인기순 정렬
     serializer_class = ThemeSerializer
+    # queryset = Theme.objects.
     queryset = Theme.objects.all()
     
 class DifferentViewSet(viewsets.ModelViewSet): #랜덤
     serializer_class = ThemeSerializer
+    # queryset = Theme.objects.
     queryset = Theme.objects.all()
     
     
