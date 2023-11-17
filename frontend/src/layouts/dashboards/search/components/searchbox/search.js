@@ -7,39 +7,41 @@ import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 
 export default function BBox() {
-	const [nickname, setNickname] = useState("");
+	const [searchValue, setSearchValue] = useState("");
 
-	const onInputChange = e => {
-		setNickname(e.target.value);
+	const InputChange = e => {
+		setSearchValue(e.target.value);
 	};
 
 	const onSubmit = () => {
-		console.log(nickname);
+		axios
+			.get("http://127.0.0.1:8000/search/", {
+				params: {
+					text: searchValue,
+				},
+			})
+			.then(function (response) {
+				window.location = "/Recommand";
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 	};
 	return (
 		<Paper component="form" sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}>
 			<InputBase
 				sx={{ ml: 1, flex: 1 }}
 				placeholder="닉네임을 입력하세요..."
-				value={nickname}
-				onChange={onInputChange}
+				type="text"
+				value={searchValue}
+				onChange={InputChange}
 				inputProps={{ "aria-label": "search" }}
 			/>
 			<IconButton
 				type="submit"
 				sx={{ p: "10px" }}
 				aria-label="search"
-				onClick={() => {
-					axios
-						.get()
-						.then(response => {
-							setText([...response.data]);
-							console.log(response.data);
-						})
-						.catch(function (error) {
-							console.log(error);
-						});
-				}} //받은 데이터 리다이렉팅 하며 넘겨줘야함
+				onClick={onSubmit} //받은 데이터 리다이렉팅 하며 넘겨줘야함
 			>
 				<SearchIcon />
 			</IconButton>

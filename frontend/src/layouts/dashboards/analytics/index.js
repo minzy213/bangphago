@@ -43,17 +43,16 @@ function Analytics() {
 	const location = useLocation().pathname;
 	useEffect(() => {
 		if (location === "/Recommand") {
-			console.log(1111);
-			get_data("http://127.0.0.1:8000/theme/");
+			get_data("http://127.0.0.1:8000/Recommand/");
 		} else if (location === "/popular") {
 			//다른거로 바꾸기
-			get_data("http://127.0.0.1:8000/theme/?limit=20&offset=40");
+			get_data("http://127.0.0.1:8000/popular/");
 		} else if (location === "/different") {
 			//다른거로 바꾸기
-			get_data("http://127.0.0.1:8000/theme/?limit=20&offset=60");
+			get_data("http://127.0.0.1:8000/different/");
 		} else {
 			//다른거로 바꾸기
-			get_data("http://127.0.0.1:8000/theme/?limit=20&offset=80");
+			get_data("http://127.0.0.1:8000/theme/");
 		}
 	}, [location]);
 

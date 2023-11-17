@@ -26,9 +26,3 @@ class ReviewListSerializer(serializers.Serializer):
     
     reviews = ReviewSerializer(many=True)
     
-    
-    
-#     def __init__(self, instance=None, data=..., **kwargs):
-#         super().__init__(instance, data, **kwargs)
-#         cnt = instance.get_count()
-#         self.review_count.se
