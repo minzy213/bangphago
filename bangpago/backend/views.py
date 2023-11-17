@@ -21,18 +21,37 @@ class ReviewViewSet(viewsets.ModelViewSet):
     queryset = Review.objects.all()
     
     
-    def get_queryset(self):
+    # def get_queryset(self):
+    #     per_page = 10
+        
+    #     params = self.request.query_params
+    #     theme_id = params.get('themeId')
+    #     page = int(params.get('page', 1))
+
+    #     if not theme_id:
+    #         raise NotFound("themeId query parameter must be required.")
+        
+    #     queryset = self.queryset.filter(theme_id=theme_id)        
+    #     return queryset[per_page*(page-1):per_page*page]
+    
+    def list(self, *args, **kwargs):
         per_page = 10
         
         params = self.request.query_params
         theme_id = params.get('themeId')
         page = int(params.get('page', 1))
-        
+
         if not theme_id:
             raise NotFound("themeId query parameter must be required.")
         
-        queryset = self.queryset.filter(theme_id=theme_id)[per_page*(page-1):per_page*page]
-        return queryset
+        qs = self.get_queryset().filter(theme_id=theme_id)
+        serializer = ReviewListSerializer({
+            'reviews': qs[per_page*(page-1):per_page*page],
+            'review_count': qs.count(),
+            "page": page,
+            "per_page": per_page
+        })
+        return Response(serializer.data)
     
     # def list(self, request):
     #     # obj = self.get_object()
@@ -46,9 +65,4 @@ class ReviewViewSet(viewsets.ModelViewSet):
     #     sc = self.get_serializer_class()
     #     serializer = sc(queryset)
     #     return Response(serializer.data)
-    
-    
-# class ThemeDetailViewSet(viewsets.ModelViewSet):
-#     queryset = Theme.objects.filter(id=pk)
-#     serializer_class = ThemeSerializer
 
