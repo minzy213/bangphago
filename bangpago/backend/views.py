@@ -59,6 +59,8 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
 def Recommendation(request):
     target = request.GET.getlist("text")[0]
+    isname = request.GET.getlist("isname")[0]
     vec = get_vector(target)
-    return HttpResponse(vec)
+    print(isname)
+    return HttpResponse("succeed")
 

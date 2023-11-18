@@ -10,7 +10,7 @@ export default function SearchPage() {
 				container
 				justifyContent="center"
 				alignItems="center"
-				sx={{ marginTop: "24%", position: "fixed", top: "7%", left: "15%", zIndex: "modal" }}
+				sx={{ marginTop: "24%", position: "fixed", top: "7%", left: "14%", zIndex: "modal" }}
 			>
 				<BBox />
 			</Grid>
