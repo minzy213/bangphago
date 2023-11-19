@@ -5,3 +5,4 @@ bangpago/backend/migrations/__pycache__
 bangpago/bangpago/__pycache__
 .DS_Store
 package-lock.json
+bangpago/backend/recom_sys/__pycache__

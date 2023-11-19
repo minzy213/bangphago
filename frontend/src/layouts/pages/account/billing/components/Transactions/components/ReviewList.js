@@ -39,7 +39,7 @@ function TablePaginationActions(props) {
 	};
 
 	const handleLastPageButtonClick = event => {
-		// onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+		onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
 	};
 
 	return (
@@ -50,10 +50,18 @@ function TablePaginationActions(props) {
 			<IconButton onClick={handleBackButtonClick} disabled={page === 0} aria-label="previous page">
 				{theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
 			</IconButton>
-			<IconButton onClick={handleNextButtonClick} aria-label="next page">
+			<IconButton
+				onClick={handleNextButtonClick}
+				disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+				aria-label="next page"
+			>
 				{theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
 			</IconButton>
-			<IconButton onClick={handleLastPageButtonClick} aria-label="last page">
+			<IconButton
+				onClick={handleLastPageButtonClick}
+				disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+				aria-label="last page"
+			>
 				{theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
 			</IconButton>
 		</Box>
@@ -114,11 +122,13 @@ export default function Transactions() {
 	const [index, setIndex] = React.useState(0);
 	const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 	const [reviews, setReviews] = useState([]);
+	const [reviewcount, setReviewCount] = useState(0);
 
 	const location = useLocation().pathname.split("/");
 	useEffect(() => {
 		axios.get("http://127.0.0.1:8000/review/?page=" + (page + 1) + "&themeId=" + location[3]).then(response => {
-			setReviews(response.data.results);
+			setReviews(response.data.reviews);
+			setReviewCount(response.data.review_count);
 		});
 	}, [page, setReviews]);
 
@@ -161,7 +171,7 @@ export default function Transactions() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{reviews.map((row, idx) => {
+						{reviews.map(row => {
 							return (
 								<Row
 									key={row.id}
@@ -180,7 +190,7 @@ export default function Transactions() {
 							<TablePagination
 								rowsPerPageOptions={[10]}
 								colSpan={3}
-								count={rows.length}
+								count={reviewcount}
 								rowsPerPage={rowsPerPage}
 								page={page}
 								SelectProps={{

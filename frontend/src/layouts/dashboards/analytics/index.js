@@ -29,31 +29,43 @@ import BookingCard from "examples/Cards/BookingCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { Button } from "@mui/material";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 function Analytics() {
 	const [stores, setStores] = useState([]);
+	const [next, setNext] = useState();
+	const [prev, setPrev] = useState();
 
-	function get_next() {}
+	function get_next() {
+		get_data(next);
+	}
+
+	function get_prev() {
+		get_data(prev);
+	}
 
 	function get_data(url) {
 		axios.get(url).then(response => {
 			setStores(response.data.results);
+			setNext(response.data.next);
+			setPrev(response.data.previous);
 		});
 	}
 	const location = useLocation().pathname;
 	useEffect(() => {
 		if (location === "/Recommand") {
-			console.log(1111);
-			get_data("http://127.0.0.1:8000/theme/");
+			//다른거로 바꾸기
+			get_data("http://127.0.0.1:8000/Recommand/");
 		} else if (location === "/popular") {
 			//다른거로 바꾸기
-			get_data("http://127.0.0.1:8000/theme/?limit=20&offset=40");
+			get_data("http://127.0.0.1:8000/popular/");
 		} else if (location === "/different") {
 			//다른거로 바꾸기
-			get_data("http://127.0.0.1:8000/theme/?limit=20&offset=60");
+			get_data("http://127.0.0.1:8000/different/");
 		} else {
-			//다른거로 바꾸기
-			get_data("http://127.0.0.1:8000/theme/?limit=20&offset=80");
+			get_data("http://127.0.0.1:8000/theme/");
 		}
 	}, [location]);
 
@@ -80,6 +92,50 @@ function Analytics() {
 						))}
 					</Grid>
 				</MDBox>
+			</MDBox>
+			<MDBox sx={{ float: "right", width: "15%" }}>
+				<Button
+					sx={{
+						width: "5%",
+						display: "flex",
+						position: "fixed",
+						bottom: "5rem",
+						right: "3rem",
+						borderRadius: "30%",
+						shadow: "sm",
+					}}
+				>
+					{prev === null ? (
+						<span className="material-icons" style={{ fontSize: "80px", color: "black" }}>
+							navigate_before
+						</span>
+					) : (
+						<span className="material-icons" style={{ fontSize: "80px", color: "black" }} onClick={get_prev}>
+							navigate_before
+						</span>
+					)}
+				</Button>
+				<Button
+					sx={{
+						width: "5%",
+						display: "flex",
+						position: "fixed",
+						bottom: "5rem",
+						right: "0.2rem",
+						borderRadius: "30%",
+						shadow: "sm",
+					}}
+				>
+					{next === null ? (
+						<span className="material-icons" style={{ fontSize: "80px", color: "black" }}>
+							navigate_next
+						</span>
+					) : (
+						<span className="material-icons" style={{ fontSize: "80px", color: "black" }} onClick={get_next}>
+							navigate_next
+						</span>
+					)}
+				</Button>
 			</MDBox>
 		</DashboardLayout>
 	);

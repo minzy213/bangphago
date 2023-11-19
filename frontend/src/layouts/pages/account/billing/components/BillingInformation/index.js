@@ -30,7 +30,7 @@ function BillingInformation({ themeName, themeImg, telNum, Intro, time, Grade, L
 		<Card id="delete-account">
 			<MDBox pt={1} pb={2} px={2}>
 				<MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
-					<Grid container justifyContent="center" alignItems="center">
+					<Grid container justifyContent="center" alignItems="center" sx={{ marginTop: "5%", marginBottom: "5%" }}>
 						<Grid item xs={4} display="center" sx={{ marginLeft: "-9%" }}>
 							<img
 								src={themeImg}
@@ -65,7 +65,7 @@ function BillingInformation({ themeName, themeImg, telNum, Intro, time, Grade, L
 										width: "100%",
 										display: "-webkit-box",
 										WebkitBoxOrient: "vertical",
-										WebkitLineClamp: "8",
+										WebkitLineClamp: "9",
 										overflow: "hidden",
 									}}
 								>
@@ -81,9 +81,6 @@ function BillingInformation({ themeName, themeImg, telNum, Intro, time, Grade, L
 									설명: {Intro}
 								</p>
 							</MDBox>
-						</Grid>
-						<Grid item xs={12} display="center" mt={5}>
-							이건 어떠세요?
 						</Grid>
 					</Grid>
 				</MDBox>
