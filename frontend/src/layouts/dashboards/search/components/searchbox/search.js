@@ -79,7 +79,7 @@ export default function BBox() {
 				inputProps={{ "aria-label": "search" }}
 			/>
 			<IconButton
-				type="submit"
+				type="button"
 				sx={{ p: "10px" }}
 				aria-label="search"
 				onClick={onSubmit} //받은 데이터 리다이렉팅 하며 넘겨줘야함

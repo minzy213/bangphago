@@ -62,5 +62,6 @@ def Recommendation(request):
     isname = request.GET.getlist("isname")[0]
     vec = get_vector(target)
     print(isname)
+    print(vec)
     return HttpResponse("succeed")
 
