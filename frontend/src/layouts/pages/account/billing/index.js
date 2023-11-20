@@ -29,23 +29,27 @@ import PaymentMethod from "layouts/pages/account/billing/components/PaymentMetho
 import Invoices from "layouts/pages/account/billing/components/Invoices";
 import BillingInformation from "layouts/pages/account/billing/components/BillingInformation";
 import Transactions from "layouts/pages/account/billing/components/Transactions";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 function Billing() {
-	const [detail, setDetail] = useState({});
+	const [detail, setDetail] = useState(null);
 
-	function get_detail(id) {
-		axios.get("http://127.0.0.1:8000/theme/" + id).then(response => {
-			setDetail(response.data);
-		});
-	}
+	const fetchDetail = useCallback(
+		id => {
+			axios.get("http://127.0.0.1:8000/theme/" + id).then(response => {
+				setDetail(response.data);
+			});
+		},
+		[setDetail, axios],
+	);
 
-	const location = useLocation().pathname.split("/");
+	const location = useLocation();
+
 	useEffect(() => {
-		get_detail(location[3]);
-	}, []);
+		fetchDetail(location.pathname.split("/")[3]);
+	}, [location]);
 
 	return (
 		<BaseLayout stickyNavbar>
@@ -53,16 +57,29 @@ function Billing() {
 				<MDBox mb={0}>
 					<Grid container spacing={3}>
 						<Grid item xs={12} md={8} ml={-2}>
-							<BillingInformation
-								themeName={detail.title}
-								themeImg={detail.image}
-								telNum="010-6551-6561 -> 없음"
-								Intro={detail.intro}
-								time={detail.time}
-								Grade={detail.grade}
-								Location="강남 비트포비아 1호점-> 없음"
-								Category="카테고리-> 없음"
-							/>
+							{detail ? (
+								<BillingInformation
+									themeName={detail.title}
+									themeImg={detail.image}
+									telNum={detail.company.tel}
+									Intro={detail.intro}
+									time={detail.time}
+									Grade={detail.grade}
+									Location={detail.company.title}
+									Category={detail.category.name}
+								/>
+							) : null}
+
+							{/* <BillingInformation
+								themeName={detail?.title}
+								themeImg={detail?.image}
+								telNum={detail?.company?.tel}
+								Intro={detail?.intro}
+								time={detail?.time}
+								Grade={detail?.grade}
+								Location={detail?.company?.title}
+								Category={detail?.category?.name}
+							/> */}
 						</Grid>
 						<Grid item xs={12} md={4} ml={-1}>
 							<Transactions />

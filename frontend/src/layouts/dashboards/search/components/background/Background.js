@@ -4,8 +4,11 @@ import { Grid } from "@mui/material";
 import brandWhite from "assets/images/logoDark.png";
 import brandDark from "assets/images/logo.png";
 import MDTypography from "components/MDTypography";
+import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 export default function Background() {
+	const [controller, dispatch] = useMaterialUIController();
+	const { whiteSidenav, darkMode } = controller;
 	return (
 		<Grid
 			className="page-name"
@@ -15,7 +18,7 @@ export default function Background() {
 			sx={{ marginTop: "20%", position: "fixed" }}
 		>
 			<MDTypography>
-				<img src={brandDark} className="logo-img" style={{ width: "230%" }} />
+				<img src={darkMode || whiteSidenav ? brandWhite : brandDark} className="logo-img" style={{ width: "230%" }} />
 			</MDTypography>
 
 			<MDTypography sx={{ marginLeft: "13%", marginBottom: "14%" }}>

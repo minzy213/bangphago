@@ -72,14 +72,14 @@ export default function BBox() {
 		<Paper component="form" sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 500 }}>
 			<InputBase
 				sx={{ ml: 1, flex: 1 }}
-				placeholder="추천 받고 싶은 유형을 선택해주세요..."
+				placeholder="추천 유형을 선택해주세요..."
 				type="text"
 				value={searchValue}
 				onChange={InputChange}
 				inputProps={{ "aria-label": "search" }}
 			/>
 			<IconButton
-				type="button"
+				type="submit"
 				sx={{ p: "10px" }}
 				aria-label="search"
 				onClick={onSubmit} //받은 데이터 리다이렉팅 하며 넘겨줘야함

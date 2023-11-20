@@ -30,8 +30,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 function Analytics() {
 	const [stores, setStores] = useState([]);
@@ -69,21 +67,6 @@ function Analytics() {
 		}
 	}, [location]);
 
-	// const get_company_name = id => {
-
-	// 	try {
-	// 		axios.get(`http://127.0.0.1:8000/company/${id}/`).then(response => {
-	// 			const company_name = response.data.title;
-	// 			console.log(company_name);
-	// 		})
-	// 	} catch {
-	// 		console.log("가게 정보 없음");
-	// 	}
-
-	// 	return company_name;
-	// }, []);
-	// };
-
 	return (
 		<DashboardLayout>
 			<DashboardNavbar />
@@ -99,7 +82,7 @@ function Analytics() {
 										time={store.time}
 										difficulty={store.level}
 										grade={store.grade}
-										location={"없음"}
+										location={store.company.title}
 										store_id={store.company + "/" + store.id}
 									/>
 								</MDBox>

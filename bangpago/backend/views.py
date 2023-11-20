@@ -12,14 +12,11 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UserSerializer
     
-class CompanyViewSet(viewsets.ModelViewSet):
-    queryset = Company.objects.all()
-    serializer_class = CompanySrializer
-    
-    
 class ThemeViewSet(viewsets.ModelViewSet): #All
     serializer_class = ThemeSerializer
     queryset = Theme.objects.all()
+    # queryset = Theme.objects.prefetch_related('company').all()
+    
     
 
 class RecommandViewSet(viewsets.ModelViewSet): #추천순

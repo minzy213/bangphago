@@ -81,7 +81,7 @@ function Row({ row, onClick, isExpanded = false }) {
 						textOverflow: "ellipsis",
 					}}
 				>
-					닉네임 없음
+					{row.user.name}
 				</TableCell>
 				<TableCell style={{ width: "15%" }} align="center">
 					{row.grade}
