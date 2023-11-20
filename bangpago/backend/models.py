@@ -43,8 +43,8 @@ class Theme(models.Model):
     grade = models.FloatField()
     thumbnail = models.CharField(max_length=150)
     createdAt = models.CharField(max_length=15)
-    
-    image = models.ImageField(upload_to='theme', default='theme/no_img.png')
+
+    image = models.ImageField(upload_to="theme", default="theme/no_img.png")
 
 
 class Keyword(models.Model):
@@ -81,3 +81,35 @@ class ReviewKeyword(models.Model):
     review = models.ForeignKey(
         Review, on_delete=models.CASCADE, related_name="rev_keyword_set"
     )
+    keyword = models.ForeignKey(
+        Keyword, on_delete=models.CASCADE, related_name="keyword_set"
+    )
+    theme = models.ForeignKey(
+        Theme, on_delete=models.CASCADE, related_name="rk_theme_set"
+    )
+    user = models.ForeignKey(
+        Users, on_delete=models.CASCADE, related_name="rk_user_set"
+    )
+    isPositive = models.IntegerField()
+
+
+class ThemeVector(models.Model):
+    id = models.AutoField(primary_key=True)
+    theme = models.ForeignKey(
+        Theme, on_delete=models.CASCADE, related_name="theme_vector_set"
+    )
+    keyword = models.ForeignKey(
+        Keyword, on_delete=models.CASCADE, related_name="t_vector_key_set"
+    )
+    value = models.FloatField()
+
+
+class UserVector(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(
+        Users, on_delete=models.CASCADE, related_name="user_vector_set"
+    )
+    keyword = models.ForeignKey(
+        Keyword, on_delete=models.CASCADE, related_name="u_vector_key_set"
+    )
+    value = models.FloatField()
