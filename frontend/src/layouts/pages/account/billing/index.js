@@ -32,14 +32,18 @@ import Transactions from "layouts/pages/account/billing/components/Transactions"
 import { useEffect, useState, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Billing() {
 	const [detail, setDetail] = useState(null);
+	const [dataLoad, setDataLoad] = useState(false);
 
 	const fetchDetail = useCallback(
 		id => {
+			setDataLoad(true);
 			axios.get("http://127.0.0.1:8000/theme/" + id).then(response => {
 				setDetail(response.data);
+				setDataLoad(false);
 			});
 		},
 		[setDetail, axios],
@@ -68,7 +72,14 @@ function Billing() {
 									Location={detail.company.title}
 									Category={detail.category.name}
 								/>
-							) : null}
+							) : (
+								<CircularProgress
+									color="inherit"
+									size="10rem"
+									thickness={7}
+									sx={{ float: "right", marginRight: "25%", marginTop: "20%" }}
+								/>
+							)}
 
 							{/* <BillingInformation
 								themeName={detail?.title}

@@ -30,17 +30,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Analytics() {
-	const [stores, setStores] = useState([]);
+	const [stores, setStores] = useState(null);
 	const [next, setNext] = useState();
 	const [prev, setPrev] = useState();
 
 	function get_next() {
+		setStores(null);
 		get_data(next);
 	}
 
 	function get_prev() {
+		setStores(null);
 		get_data(prev);
 	}
 
@@ -53,14 +56,12 @@ function Analytics() {
 	}
 	const location = useLocation().pathname;
 	useEffect(() => {
+		setStores(null);
 		if (location === "/Recommand") {
-			//다른거로 바꾸기
 			get_data("http://127.0.0.1:8000/Recommand/");
 		} else if (location === "/popular") {
-			//다른거로 바꾸기
 			get_data("http://127.0.0.1:8000/popular/");
 		} else if (location === "/different") {
-			//다른거로 바꾸기
 			get_data("http://127.0.0.1:8000/different/");
 		} else {
 			get_data("http://127.0.0.1:8000/theme/");
@@ -73,21 +74,30 @@ function Analytics() {
 			<MDBox py={3}>
 				<MDBox mt={2}>
 					<Grid container spacing={3}>
-						{stores.map(store => (
-							<Grid item key={store.id} xs={12} md={6} lg={4} sx={{ marginRight: "5%", marginLeft: "5%" }}>
-								<MDBox mt={3}>
-									<BookingCard
-										image={store.image}
-										title={store.title}
-										time={store.time}
-										difficulty={store.level}
-										grade={store.grade}
-										location={store.company.title}
-										store_id={store.company + "/" + store.id}
-									/>
-								</MDBox>
-							</Grid>
-						))}
+						{!stores ? (
+							<CircularProgress
+								color="inherit"
+								size="10rem"
+								thickness={7}
+								sx={{ marginLeft: "43%", marginTop: "20%" }}
+							/>
+						) : (
+							stores.map(store => (
+								<Grid item key={store.id} xs={12} md={6} lg={4} sx={{ marginRight: "5%", marginLeft: "5%" }}>
+									<MDBox mt={3}>
+										<BookingCard
+											image={store.image}
+											title={store.title}
+											time={store.time}
+											difficulty={store.level}
+											grade={store.grade}
+											location={store.company.title}
+											store_id={store.company + "/" + store.id}
+										/>
+									</MDBox>
+								</Grid>
+							))
+						)}
 					</Grid>
 				</MDBox>
 			</MDBox>

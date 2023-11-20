@@ -21,6 +21,7 @@ import { useTheme } from "@mui/material/styles";
 import { TableFooter } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function TablePaginationActions(props) {
 	const theme = useTheme();
