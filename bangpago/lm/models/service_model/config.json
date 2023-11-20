@@ -1,5 +1,5 @@
 {
-  "_name_or_path": "monologg/koelectra-small-v3-discriminator",
+  "_name_or_path": "./service_model/try_4/service_model4",
   "architectures": [
     "ElectraForSequenceClassification"
   ],
