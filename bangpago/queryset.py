@@ -45,6 +45,7 @@ def getVector(qs, len_r):
 def cos_sim(A, B):
     a = np.array(A[0:9] + A[10:])
     b = np.array(B[0:9] + B[10:])
+
     return dot(a, b) / (norm(a) * norm(b))
 
 
@@ -79,7 +80,10 @@ def recom_sys(data):
 
     pk_list = cos_th.keys()
     preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(pk_list)])
-    return Theme.objects.filter(pk__in=pk_list).order_by(preserved)
+    qs = Theme.objects.filter(pk__in=pk_list).order_by(preserved)
+    for q in qs:
+        print(q.title)
+    return qs
 
 
 def popular():

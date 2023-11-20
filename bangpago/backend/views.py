@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from django.http import HttpResponse
 from .recom_sys.recom import get_vector
+from queryset import recom_sys, popular, rndm
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
@@ -25,13 +26,11 @@ class RecommandViewSet(viewsets.ModelViewSet): #추천순
 
 class PopularViewSet(viewsets.ModelViewSet): #인기순 정렬
     serializer_class = ThemeSerializer
-    # queryset = popular()
-    queryset = Theme.objects.all()
+    queryset = popular()
     
 class DifferentViewSet(viewsets.ModelViewSet): #랜덤
     serializer_class = ThemeSerializer
-    # queryset = random()
-    queryset = Theme.objects.all()
+    queryset = rndm()
     
     
 class ReviewViewSet(viewsets.ModelViewSet):
@@ -62,9 +61,9 @@ def Recommendation(request):
     target = request.GET.getlist("text")[0]
     isname = request.GET.getlist("isname")[0]
     
-    # if isname == True:
-    #     recom_sys(target)
-    # else:
-    #     recom_sys(get_vector(target))
+    if isname != True:
+        RecommandViewSet.queryset = recom_sys(target)
+    else:
+        RecommandViewSet.queryset = recom_sys(get_vector(target))
 
     return HttpResponse("succeed")
