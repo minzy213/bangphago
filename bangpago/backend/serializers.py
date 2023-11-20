@@ -1,6 +1,6 @@
 # from django.contrib.auth.models import User
 from rest_framework.fields import empty
-from .models import Users, Theme, Review
+from .models import Users, Theme, Review, Company
 
 from rest_framework import serializers
 
@@ -18,6 +18,12 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = ["id", "theme", "user", "playDate", "grade", "level", "success", "extraTime", "remainingTime", "userHint", "content"]
+        
+class CompanySrializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ["id", "title", "tel", "homepage" ]   
+        
         
 class ReviewListSerializer(serializers.Serializer):
     review_count = serializers.IntegerField(read_only=True)

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .serializers import *
-from .models import Users, Theme, Review
+from .models import Users, Theme, Review, Company
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -11,6 +11,10 @@ from .recom_sys.recom import get_vector
 class UserViewSet(viewsets.ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UserSerializer
+    
+class CompanyViewSet(viewsets.ModelViewSet):
+    queryset = Company.objects.all()
+    serializer_class = CompanySrializer
     
     
 class ThemeViewSet(viewsets.ModelViewSet): #All
@@ -24,12 +28,12 @@ class RecommandViewSet(viewsets.ModelViewSet): #추천순
 
 class PopularViewSet(viewsets.ModelViewSet): #인기순 정렬
     serializer_class = ThemeSerializer
-    # queryset = Theme.objects.
+    # queryset = popular()
     queryset = Theme.objects.all()
     
 class DifferentViewSet(viewsets.ModelViewSet): #랜덤
     serializer_class = ThemeSerializer
-    # queryset = Theme.objects.
+    # queryset = random()
     queryset = Theme.objects.all()
     
     
@@ -60,8 +64,10 @@ class ReviewViewSet(viewsets.ModelViewSet):
 def Recommendation(request):
     target = request.GET.getlist("text")[0]
     isname = request.GET.getlist("isname")[0]
-    vec = get_vector(target)
-    print(isname)
-    print(vec)
-    return HttpResponse("succeed")
+    
+    # if isname == True:
+    #     recom_sys(target)
+    # else:
+    #     recom_sys(get_vector(target))
 
+    return HttpResponse("succeed")
