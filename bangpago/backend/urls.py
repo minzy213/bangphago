@@ -10,7 +10,6 @@ router.register(r'review', views.ReviewViewSet, basename='Review')
 router.register(r'Recommand', views.RecommandViewSet, basename='Recommand')
 router.register(r'popular', views.PopularViewSet, basename='popular')
 router.register(r'different', views.DifferentViewSet, basename='different')
-router.register(r'company', views.CompanyViewSet, basename='company')
 
 # /theme/363/review?page=2
 # /review?theme_id=363&page=1

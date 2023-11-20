@@ -1,5 +1,4 @@
 from transformers import ElectraTokenizer, ElectraForSequenceClassification
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score, classification_report
 from torch.nn.functional import softmax
 import torch
 import os
