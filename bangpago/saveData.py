@@ -1,3 +1,13 @@
+"""
+crawl/reviews 에 저장된 json file들을 DB에 저장하는 코드
+
+아래 순서대로 실행 필요
+
+(mysql) create database bangphago character set utf8mb4 collate utf8mb4_general_ci;
+(terminal) python manage.py migrate
+(terminal) python saveData.py
+"""
+
 import json
 from tqdm import tqdm
 import os, sys
@@ -120,11 +130,11 @@ for theme in tqdm(theme_dict["list"]):
         t_theme = t_theme[0]
     # 해당 테마 리뷰들 for문 돌리기
     for rev in detail_d["review_list"]:
-        t_user = Users.objects.filter(name=rev["userName"][:20])
+        t_user = Users.objects.filter(id=rev["userId"])
         # 새로운 유저면 유저 저장
         if len(t_user) == 0:
             t_user = Users.objects.create(
-                name=rev["userName"][:20], level=rev["reviewLevel"]
+                id=rev["userId"], name=rev["userName"][:20], level=rev["reviewLevel"]
             )
         else:
             t_user = t_user[0]

@@ -33,18 +33,32 @@ keys = [
 
 
 def getVector(qs, len_r):
-    vector = [0] * len(keys)
+    keys = ['guide', 'interior', 'story', 'probability', 'creativity', 'production', 'device', 'fun', 'service']
+    vec_ab = {}
+    # 유저 벡터 계산
     for query in qs:
-        vector[query.keyword.id - 1] += query.isPositive
-    vec_mean = []
-    for vec in vector:
-        vec_mean.append(vec / len_r)
-    return vec_mean
+        if vec_ab.get(query.keyword.name) is None:
+            vec_ab[query.keyword.name] = 1
+                
+        else:
+            if query.isPositive == -1:
+                vec_ab[query.keyword.name] -= query.isPositive
+            else:
+                vec_ab[query.keyword.name] += query.isPositive
+    vec_honey_ab = []
+
+    for k in keys:
+        if vec_ab.get(k) is not None:
+            vec_honey_ab.append(vec_ab[k])
+        else:
+            vec_honey_ab.append(0)
+    return vec_honey_ab
+
 
 
 def cos_sim(A, B):
-    a = np.array(A[0:9] + A[10:])
-    b = np.array(B[0:9] + B[10:])
+    a = np.array(A)
+    b = np.array(B)
 
     return dot(a, b) / (norm(a) * norm(b))
 
@@ -54,7 +68,8 @@ def recom_sys(data):
     유저 이름 혹은 댓글 입력 시 해당 유저/댓글과 유사한 순서로 테마 쿼리셋 리턴
     """
     # 라벨링한 데이터 사용, 추후 변경 필요
-    df = pd.read_csv("dataset/tmp_vec.csv", index_col=0)
+    df = pd.read_csv("dataset/thmvec_1121.csv", index_col=0)
+    theme = pd.read_csv('dataset/theme.csv', index_col=0)
     t_vec = df.T.to_dict("list")
     # username 전달되면 유저 벡터 가져오기
     if isinstance(data, str):
@@ -69,14 +84,13 @@ def recom_sys(data):
     # 유저와 테마의 코사인 유사도 계산하기
     cos_th = {}
     for th in t_vec.keys():
-        sim = cos_sim(u_vec, t_vec[th])
+        grade = theme[theme['id'] == th]['grade'].values[0]
+        sim = cos_sim(u_vec, t_vec[th]) + grade * 0.1
         if not np.isnan(sim):
             cos_th[th] = sim
 
     # 유사도 순서대로 queryset 만들어오기
-    cos_th = {
-        k: v for k, v in sorted(cos_th.items(), key=lambda item: item[1], reverse=True)
-    }
+    cos_th = {k: v for k, v in sorted(cos_th.items(), key=lambda item: item[1], reverse=True)}
 
     pk_list = cos_th.keys()
     preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(pk_list)])
