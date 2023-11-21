@@ -23,14 +23,102 @@ import MDTypography from "components/MDTypography";
 import Typography from "@mui/material/Typography";
 // Billing page components
 import Bill from "layouts/pages/account/billing/components/Bill";
+import low_act from "./low_act.png";
+import high_act from "./high_act.png";
+import dark from "./dark.png";
+import bright from "./bright.png";
+import { useState } from "react";
 
-function BillingInformation({ themeName, themeImg, telNum, Intro, time, Grade, Location, Category }) {
+function BillingInformation({
+	themeName,
+	themeImg,
+	telNum,
+	Intro,
+	time,
+	Grade,
+	Location,
+	Category,
+	activity,
+	brightness,
+}) {
 	const category = Category.padEnd(15, "\u00A0");
+
+	function activity_img() {
+		if (activity === null) {
+			return null;
+		} else if (activity === "1") {
+			return (
+				<Grid item marginRight={4}>
+					<MDBox
+						component="img"
+						src={high_act}
+						borderRadius="lg"
+						shadow="md"
+						width="100%"
+						height="100%"
+						position="relative"
+						zIndex={1}
+					/>
+				</Grid>
+			);
+		} else {
+			return (
+				<Grid item marginRight={4}>
+					<MDBox
+						component="img"
+						src={low_act}
+						borderRadius="lg"
+						shadow="md"
+						width="100%"
+						height="100%"
+						position="relative"
+						zIndex={1}
+					/>
+				</Grid>
+			);
+		}
+	}
+	function brightness_img() {
+		if (brightness === null) {
+			return null;
+		} else if (brightness === "1") {
+			return (
+				<Grid item marginRight={4}>
+					<MDBox
+						component="img"
+						src={bright}
+						borderRadius="lg"
+						shadow="md"
+						width="100%"
+						height="100%"
+						position="relative"
+						zIndex={1}
+					/>
+				</Grid>
+			);
+		} else {
+			return (
+				<Grid item marginRight={4}>
+					<MDBox
+						component="img"
+						src={dark}
+						borderRadius="lg"
+						shadow="md"
+						width="100%"
+						height="100%"
+						position="relative"
+						zIndex={1}
+					/>
+				</Grid>
+			);
+		}
+	}
+
 	return (
 		<Card id="delete-account">
 			<MDBox pt={1} pb={2} px={2}>
 				<MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
-					<Grid container justifyContent="center" alignItems="center" sx={{ marginTop: "5%", marginBottom: "5%" }}>
+					<Grid container justifyContent="center" alignItems="center" sx={{ marginTop: "1%", marginBottom: "3.2%" }}>
 						<Grid item xs={4} display="center" sx={{ marginLeft: "-9%" }}>
 							<img
 								src={themeImg}
@@ -65,7 +153,7 @@ function BillingInformation({ themeName, themeImg, telNum, Intro, time, Grade, L
 										width: "100%",
 										display: "-webkit-box",
 										WebkitBoxOrient: "vertical",
-										WebkitLineClamp: "9",
+										WebkitLineClamp: "8",
 										overflow: "hidden",
 									}}
 								>
@@ -84,6 +172,10 @@ function BillingInformation({ themeName, themeImg, telNum, Intro, time, Grade, L
 						</Grid>
 					</Grid>
 				</MDBox>
+				<Grid container justifyContent="right" alignItems="center">
+					{activity_img()}
+					{brightness_img()}
+				</Grid>
 			</MDBox>
 		</Card>
 	);

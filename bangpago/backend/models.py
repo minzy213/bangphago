@@ -45,6 +45,7 @@ class Theme(models.Model):
     createdAt = models.CharField(max_length=15)
 
     image = models.ImageField(upload_to="theme", default="theme/no_img.png")
+    etc = models.CharField(max_length=30, default='')
 
 
 class Keyword(models.Model):

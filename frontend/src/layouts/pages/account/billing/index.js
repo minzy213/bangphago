@@ -37,12 +37,27 @@ import CircularProgress from "@mui/material/CircularProgress";
 function Billing() {
 	const [detail, setDetail] = useState(null);
 	const [dataLoad, setDataLoad] = useState(false);
+	const [activity, setActivity] = useState(null);
+	const [brightness, setBrightness] = useState(null);
 
 	const fetchDetail = useCallback(
 		id => {
 			setDataLoad(true);
 			axios.get("http://127.0.0.1:8000/theme/" + id).then(response => {
 				setDetail(response.data);
+				if (response.data.etc === "") {
+					setActivity(null);
+					setBrightness(null);
+				} else if (response.data.etc.split("/").length === 2) {
+					setActivity(response.data.etc.split("/")[0].split(" ")[1]);
+					setBrightness(response.data.etc.split("/")[1].split(" ")[1]);
+				} else {
+					if (response.data.etc.split("/")[0] === "활동성") {
+						setActivity(response.data.etc.split(" ")[1]);
+					} else {
+						setBrightness(response.data.etc.split(" ")[1]);
+					}
+				}
 				setDataLoad(false);
 			});
 		},
@@ -71,6 +86,8 @@ function Billing() {
 									Grade={detail.grade}
 									Location={detail.company.title}
 									Category={detail.category.name}
+									activity={activity}
+									brightness={brightness}
 								/>
 							) : (
 								<CircularProgress
@@ -80,17 +97,6 @@ function Billing() {
 									sx={{ float: "right", marginRight: "25%", marginTop: "20%" }}
 								/>
 							)}
-
-							{/* <BillingInformation
-								themeName={detail?.title}
-								themeImg={detail?.image}
-								telNum={detail?.company?.tel}
-								Intro={detail?.intro}
-								time={detail?.time}
-								Grade={detail?.grade}
-								Location={detail?.company?.title}
-								Category={detail?.category?.name}
-							/> */}
 						</Grid>
 						<Grid item xs={12} md={4} ml={-1}>
 							<Transactions />
