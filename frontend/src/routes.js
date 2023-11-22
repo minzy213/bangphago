@@ -52,7 +52,7 @@ const routes = [
 		route: "/All",
 		component: <Analytics />,
 	},
-	{ type: "title", title: "선택기준 : 수정 하려면 routes.js!", key: "title-pages" },
+	{ type: "title", title: "추천기준", key: "title-pages" },
 	{
 		type: "collapse",
 		name: "댓글기반 추천",
@@ -83,12 +83,3 @@ const routes = [
 ];
 
 export default routes;
-// {
-// 	type: "collapse",
-// 	name: "인기순",
-// 	key: "2",
-// 	route: "/dashboards/analytics",
-// 	icon: <Icon fontSize="medium">groupsoutlined</Icon>,
-// 	noCollapse: true,
-// 	component: <Sales />,
-// },

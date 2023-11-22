@@ -95,8 +95,6 @@ def recom_sys(data):
     pk_list = cos_th.keys()
     preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(pk_list)])
     qs = Theme.objects.filter(pk__in=pk_list).order_by(preserved)
-    for q in qs:
-        print(q.title)
     return qs
 
 
