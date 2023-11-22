@@ -50,7 +50,7 @@ class Theme(models.Model):
 
 class Keyword(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=15)
 
 
 class Users(models.Model):
