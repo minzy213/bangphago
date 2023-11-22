@@ -9,8 +9,8 @@ def get_vector(search:str):
     inputs = tokenizer(search, return_tensors="pt")
 
     vector = []
-    for model in os.listdir("./lm/models"):
-        model_path = "./lm/models/" + model
+    for model in ['guide', 'interior', 'story', 'probability', 'creativity', 'production', 'device', 'fun', 'service']:
+        model_path = "./lm/models/" + model + "_model"
         model = ElectraForSequenceClassification.from_pretrained(model_path)
         model.resize_token_embeddings(len(tokenizer))
         outputs = model(**inputs)
@@ -21,9 +21,6 @@ def get_vector(search:str):
         predicted_class = torch.argmax(probabilities).item()
 
         vector.append(predicted_class)
-        print(f"Input Text: {search}")
-        print(f"Predicted Class: {predicted_class}")
-        print(f"Class Probabilities: {probabilities}")
     
     
     return vector
