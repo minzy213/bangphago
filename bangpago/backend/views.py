@@ -60,8 +60,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
 def Recommendation(request):
     target = request.GET.getlist("text")[0]
     isname = request.GET.getlist("isname")[0]
-    
-    if isname != True:
+    if isname == True:
         RecommandViewSet.queryset = recom_sys(target)
     else:
         RecommandViewSet.queryset = recom_sys(get_vector(target))

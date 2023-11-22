@@ -72,7 +72,7 @@ def recom_sys(data):
     theme = pd.read_csv('dataset/theme.csv', index_col=0)
     t_vec = df.T.to_dict("list")
     # username 전달되면 유저 벡터 가져오기
-    if isinstance(data, str):
+    if isinstance(data, str) == True:
         user = Users.objects.get(name=data)
         rev_len = user.rev_user_set.all().count()
         qs = user.rk_user_set.all()
